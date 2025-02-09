@@ -805,6 +805,8 @@ if [ ! -e "${RPI_SB_WORKDIR}/bootfs-temporary.img" ] ||
         rm -rf "${initramfs_dir}usr/lib/modules"
         mkdir -p "${initramfs_dir}usr/lib/modules"
 
+        sed -i "s/mmcblk0/${RPI_DEVICE_STORAGE_TYPE}/g" "${initramfs_dir}usr/bin/init_cryptroot.sh"
+
         # Insert required kernel modules
         cd "${rootfs_mount}"
         find usr/lib/modules \
